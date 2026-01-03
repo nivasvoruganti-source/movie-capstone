@@ -23,14 +23,14 @@ pipeline {
         stage('Health Check') {
             steps {
                 sh 'sleep 10'
-                sh 'curl http://localhost:5000/health || true'
+                sh 'curl http://localhost:5000/health'
             }
         }
     }
 
     post {
         always {
-            sh 'docker ps'
+            sh 'docker compose down'
         }
     }
 }
