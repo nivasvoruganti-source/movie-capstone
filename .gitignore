@@ -1,1 +1,22 @@
+# Docker junk
+CACHED
+exporting
+naming
+reading
+resolve
+transferring
+unpacking
+=
 
+# Accidental bracket folders
+[backend]
+[frontend]
+[internal]
+[auth]
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor
+*.swp
