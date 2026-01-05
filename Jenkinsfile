@@ -23,7 +23,7 @@ pipeline {
         stage('Health Check') {
             steps {
                 sh 'sleep 10'
-                 sh 'curl http://movie-capstone-backend:5000/health'
+                 sh 'curl http://localhost:5000/health'
             }
         }
     }
