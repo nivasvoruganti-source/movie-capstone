@@ -2,15 +2,7 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Checkout Code') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/nivasvoruganti-source/movie-capstone.git'
-            }
-        }
-
-        stage('Build Docker Images') {
+        stage('Build Images') {
             steps {
                 sh 'docker compose build'
             }
@@ -22,13 +14,15 @@ pipeline {
             }
         }
 
+        stage('Wait for Backend') {
+            steps {
+                sh 'sleep 15'
+            }
+        }
+
         stage('Health Check') {
             steps {
-                sh '''
-                echo "Waiting for backend to start..."
-                sleep 10
-                curl -f http://localhost:5000/health
-                '''
+                sh 'curl http://localhost:5000/health'
             }
         }
     }
@@ -37,12 +31,7 @@ pipeline {
         always {
             sh 'docker compose down'
         }
-        success {
-            echo '✅ Movie Capstone Pipeline SUCCESS'
-        }
-        failure {
-            echo '❌ Movie Capstone Pipeline FAILED'
-        }
     }
 }
+
 
