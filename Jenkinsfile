@@ -14,14 +14,9 @@ pipeline {
             }
         }
 
-        stage('Wait for Backend') {
-            steps {
-                sh 'sleep 15'
-            }
-        }
-
         stage('Health Check') {
             steps {
+                sh 'sleep 10'
                 sh 'curl http://localhost:5000/health'
             }
         }
@@ -33,5 +28,7 @@ pipeline {
         }
     }
 }
+
+
 
 
