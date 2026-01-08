@@ -5,22 +5,21 @@
 </head>
 <body>
   <h1>Movie List Application</h1>
-
-  <p id="status">Checking backend health...</p>
+  <p id="status">Checking backend...</p>
 
   <script>
     fetch("https://movie-capstone-backend.onrender.com/health")
-      .then(response => response.text())
+      .then(res => res.json())
       .then(data => {
         document.getElementById("status").innerText =
-          "Backend Status: " + data;
+          "Backend status: " + data.status;
       })
-      .catch(error => {
+      .catch(err => {
         document.getElementById("status").innerText =
           "Backend not reachable";
-        console.error(error);
       });
   </script>
 </body>
 </html>
+
 
