@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Movie App</title>
+  <title>Movie List Application</title>
 </head>
 <body>
-  <h1> Movie List Application</h1>
+  <h1>Movie List Application</h1>
+
+  <p id="status">Checking backend health...</p>
+
+  <script>
+    fetch("https://movie-capstone-backend.onrender.com/health")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("status").innerText =
+          "Backend Status: " + data;
+      })
+      .catch(error => {
+        document.getElementById("status").innerText =
+          "Backend not reachable";
+        console.error(error);
+      });
+  </script>
 </body>
 </html>
-fetch("https://movie-capstone-backend.onrender.com/health")
+
